@@ -1,4 +1,4 @@
-;;;; $Id: cl-syslog.lisp,v 1.1 2003/11/13 18:32:45 eenge Exp $
+;;;; $Id: cl-syslog.lisp,v 1.2 2003/11/22 23:34:52 eenge Exp $
 ;;;; $Source: /project/cl-syslog/cvsroot/cl-syslog/cl-syslog.lisp,v $
 
 ;;;; See the LICENSE file for licensing information.
@@ -47,11 +47,15 @@
 ;;
 
 (defun get-facility (facility-name)
+  "Return facility number given the facility's name.  If there is no
+such facility, signal `invalid-facility' error."
   (ash (or (cdr (assoc facility-name *facilities*))
            (error (make-condition 'invalid-facility :facility facility-name)))
        3))
 
 (defun get-priority (priority-name)
+  "Return priority number given the priority's name.  If there is no
+such priority, signal `invalid-priority' error."
   (or (cdr (assoc priority-name *priorities*))
       (error (make-condition 'invalid-priority :priority priority-name))))
 
