@@ -1,4 +1,4 @@
-;;;; $Id: cl-syslog.asd,v 1.1 2003/11/13 18:32:45 eenge Exp $
+;;;; $Id: cl-syslog.asd,v 1.2 2003/11/22 23:32:54 eenge Exp $
 ;;;; $Source: /project/cl-syslog/cvsroot/cl-syslog/cl-syslog.asd,v $
 
 ;;;; See the LICENSE file for licensing information.
@@ -10,7 +10,7 @@
   (:documentation "Package to create the ASDF system for the cl-syslog
 package"))
 
-(in-package #:syslog-system)
+(in-package #:cl-syslog-system)
 
 (defsystem cl-syslog
     :name "cl-syslog"
@@ -20,7 +20,7 @@ package"))
     :description "Common Lisp syslog interface"
     :depends-on (:uffi)
     :properties ((#:author-email . "erik@nittin.net")
-                 (#:date . "$Date: 2003/11/13 18:32:45 $")
+                 (#:date . "$Date: 2003/11/22 23:32:54 $")
                  ((#:albert #:output-dir) . "doc/api-doc/")
                  ((#:albert #:formats) . ("docbook"))
                  ((#:albert #:docbook #:template) . "book")
@@ -29,6 +29,6 @@ package"))
     :components ((:file "package")
                  (:file "variable"
                         :depends-on ("package"))
-                 (:file "syslog"
+                 (:file "cl-syslog"
                         :depends-on ("variable"))))
                  
