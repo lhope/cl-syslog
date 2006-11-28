@@ -1,4 +1,4 @@
-;;;; $Id: cl-syslog.lisp,v 1.2 2003/11/22 23:34:52 eenge Exp $
+;;;; $Id: cl-syslog.lisp,v 1.3 2006/11/28 19:46:09 lnostdal Exp $
 ;;;; $Source: /project/cl-syslog/cvsroot/cl-syslog/cl-syslog.lisp,v $
 
 ;;;; See the LICENSE file for licensing information.
@@ -27,20 +27,16 @@
 ;; Foreign function
 ;;
 
-(uffi:def-function "openlog"
-    ((ident :cstring)
-     (option :int)
-     (facility :int))
-  :returning :void)
+(cffi:defcfun "openlog" :void
+  (ident :string)
+  (option :int)
+  (facility :int))
 
-(uffi:def-function "closelog"
-    ()
-  :returning :void)
+(cffi:defcfun "closelog" :void)
 
-(uffi:def-function "syslog"
-    ((priority :int)
-     (format :cstring))
-  :returning :void)
+(cffi:defcfun "syslog" :void
+  (priority :int)
+  (format :string)) 
 
 ;;
 ;; Utility
@@ -65,9 +61,9 @@ such priority, signal `invalid-priority' error."
 
 (defun log (name facility priority text &optional (option 0))
   "Print message to syslog.
-
 'option' can be any of the +log...+ constants"
-  (openlog name option (get-facility facility))
-  (syslog (get-priority priority) text)
-  (closelog)
+  (cffi:with-foreign-string (cname name)
+    (openlog cname option (get-facility facility))
+    (syslog (get-priority priority) text)
+    (closelog))
   text)

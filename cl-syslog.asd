@@ -1,4 +1,4 @@
-;;;; $Id: cl-syslog.asd,v 1.3 2003/11/22 23:35:59 eenge Exp $
+;;;; $Id: cl-syslog.asd,v 1.4 2006/11/28 19:46:09 lnostdal Exp $
 ;;;; $Source: /project/cl-syslog/cvsroot/cl-syslog/cl-syslog.asd,v $
 
 ;;;; See the LICENSE file for licensing information.
@@ -18,9 +18,9 @@ package"))
     :version "0.1.0"
     :licence "MIT"
     :description "Common Lisp syslog interface"
-    :depends-on (:uffi)
+    :depends-on (:cffi)
     :properties ((#:author-email . "cl-syslog-devel@common-lisp.net")
-                 (#:date . "$Date: 2003/11/22 23:35:59 $")
+                 (#:date . "$Date: 2006/11/28 19:46:09 $")
                  ((#:albert #:output-dir) . "doc/api-doc/")
                  ((#:albert #:formats) . ("docbook"))
                  ((#:albert #:docbook #:template) . "book")
